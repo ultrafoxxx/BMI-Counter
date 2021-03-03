@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BMI Counter</string>
-    <string name="weight_label">Weight [kg]</string>
-    <string name="height_label">Height [cm]</string>
+    <string name="weight_label">Weight</string>
+    <string name="height_label">Height</string>
     <string name="count_button_label">Count</string>
     <string name="bmi_value_hint">BMI_VALUE</string>
 </resources>

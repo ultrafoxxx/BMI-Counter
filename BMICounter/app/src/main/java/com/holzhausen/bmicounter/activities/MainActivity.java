@@ -2,6 +2,7 @@ package com.holzhausen.bmicounter.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (item.getItemId() == R.id.imperial_bmi_option && metricMode){
             switchToImperialMode();
+            return true;
+        }
+        else if(item.getItemId() == R.id.about_option){
+            startActivity(new Intent(this, AboutActivity.class));
             return true;
         }
         else {

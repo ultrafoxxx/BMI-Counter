@@ -6,4 +6,7 @@
     <string name="bmi_value_hint">BMI_VALUE</string>
     <string name="metric_bmi">Count metric BMI</string>
     <string name="imperial_bmi">Count imperial BMI</string>
+    <string name="bio">Name: Piotr Holzhausen\nIndex: 237975</string>
+    <string name="contact_icon_description">Contact icon</string>
+    <string name="about_option">About</string>
 </resources>

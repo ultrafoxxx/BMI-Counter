@@ -4,4 +4,7 @@
         android:title="@string/metric_bmi" />
     <item android:id="@+id/imperial_bmi_option"
         android:title="@string/imperial_bmi" />
+    <item
+        android:id="@+id/about_option"
+        android:title="@string/about_option" />
 </menu>

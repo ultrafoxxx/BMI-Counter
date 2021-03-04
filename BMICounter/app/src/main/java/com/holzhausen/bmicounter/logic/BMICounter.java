@@ -7,27 +7,13 @@ public abstract class BMICounter {
     private int weight;
     private int height;
 
-    public boolean setWeight(int weight) {
-        if(isWeightValid(weight)) {
-            this.weight = weight;
-            if(isHeightValid(height)){
-                countBmi();
-            }
-            return true;
-        }
-        return false;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
 
-    public boolean setHeight(int height) {
-        if(isHeightValid(height)) {
-            this.height = height;
-            if(isWeightValid(weight)){
-                countBmi();
-            }
-            return true;
-        }
-        return false;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public double getBmi(){
@@ -42,11 +28,11 @@ public abstract class BMICounter {
         return height;
     }
 
-    abstract void countBmi();
+    public abstract void countBmi();
 
-    abstract boolean isHeightValid(int height);
+    public abstract boolean isHeightValid(int height);
 
-    abstract boolean isWeightValid(int weight);
+    public abstract boolean isWeightValid(int weight);
 
 
 

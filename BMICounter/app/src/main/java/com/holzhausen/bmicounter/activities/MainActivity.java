@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
             bmiCounter.setWeight(weight);
             bmiCounter.countBmi();
             bmiDisplay.setText(String.valueOf(Math.round(bmiCounter.getBmi() * 100) / 100.0));
+            final String bmiClassification = bmiCounter.getBmiClassification();
+            final int colorId = getResources()
+                    .getIdentifier(bmiClassification, "color", getPackageName());
+            bmiDisplay.setTextColor(getColor(colorId));
         });
 
     }

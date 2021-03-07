@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.internal.DescendantOffsetUtils;
 import com.google.android.material.textfield.TextInputLayout;
+import com.holzhausen.bmicounter.DescriptionActivity;
 import com.holzhausen.bmicounter.R;
+import com.holzhausen.bmicounter.logic.BMIClassification;
 import com.holzhausen.bmicounter.logic.BMICounter;
 import com.holzhausen.bmicounter.logic.ImperialBMICounter;
 import com.holzhausen.bmicounter.logic.MetricBMICounter;
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     
     private BMICounter bmiCounter;
 
+    private BMIClassification currentClassification;
+
     private boolean metricMode;
 
     @Override
@@ -47,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
         switchToMetricMode();
 
         countButton.setOnClickListener(view -> {
-            int height = Integer.parseInt(Objects.requireNonNull(heightInput.getEditText())
+            InputMethodManager inputMethodManager =
+                    (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+            int height = getInputNumber(Objects.requireNonNull(heightInput.getEditText())
                     .getText().toString());
-            int weight = Integer.parseInt(Objects.requireNonNull(weightInput.getEditText())
+            int weight = getInputNumber(Objects.requireNonNull(weightInput.getEditText())
                     .getText().toString());
 
             if(!bmiCounter.isHeightValid(height)){
@@ -64,10 +73,24 @@ public class MainActivity extends AppCompatActivity {
             bmiCounter.setWeight(weight);
             bmiCounter.countBmi();
             bmiDisplay.setText(String.valueOf(Math.round(bmiCounter.getBmi() * 100) / 100.0));
-            final String bmiClassification = bmiCounter.getBmiClassification();
-            final int colorId = getResources()
-                    .getIdentifier(bmiClassification, "color", getPackageName());
-            bmiDisplay.setTextColor(getColor(colorId));
+            currentClassification = bmiCounter.getBmiClassification();
+            if(currentClassification != null){
+                final int colorId = getResources()
+                        .getIdentifier(currentClassification.getClassification(),
+                                "color", getPackageName());
+                bmiDisplay.setTextColor(getColor(colorId));
+            }
+
+        });
+
+        bmiDisplay.setOnClickListener(view -> {
+            if(currentClassification != null){
+                Intent intent = new Intent(this, DescriptionActivity.class);
+                intent.putExtra("description", currentClassification.getDescription());
+                intent.putExtra("bmi", bmiCounter.getBmi());
+                startActivity(intent);
+            }
+
         });
 
     }
@@ -125,5 +148,13 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(heightInput.getEditText()).setText("");
         Objects.requireNonNull(weightInput.getEditText()).setText("");
         bmiDisplay.setText("");
+    }
+
+    private int getInputNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            return -1;
+        }
     }
 }

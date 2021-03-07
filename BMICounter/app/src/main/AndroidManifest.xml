@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BMICounter">
-        <activity android:name=".activities.AboutActivity"></activity>
+        <activity android:name=".DescriptionActivity"></activity>
+        <activity android:name=".activities.AboutActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait">

@@ -1,6 +1,6 @@
 package com.holzhausen.bmicounter.logic;
 
-class BMIClassification {
+public class BMIClassification {
 
     private final float bottomBound;
 
@@ -8,10 +8,14 @@ class BMIClassification {
 
     private final String classification;
 
-    public BMIClassification(float bottomBound, float upperBound, String classification) {
+    private final String description;
+
+    public BMIClassification(final float bottomBound, final float upperBound,
+                             final String classification, final String description) {
         this.bottomBound = bottomBound;
         this.upperBound = upperBound;
         this.classification = classification;
+        this.description = description;
     }
 
     public float getBottomBound() {
@@ -24,5 +28,9 @@ class BMIClassification {
 
     public String getClassification() {
         return classification;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

@@ -10,14 +10,22 @@ public abstract class BMICounter {
     private int height;
 
     private static final BMIClassification[] bmiClassifications = {
-            new BMIClassification(0, 16, "severe_thinness"),
-            new BMIClassification(16, 17, "moderate_thinness"),
-            new BMIClassification(17, 18.5f, "mild_thinness"),
-            new BMIClassification(18.5f, 25, "normal"),
-            new BMIClassification(25, 30, "overweight"),
-            new BMIClassification(30, 35, "obese_first_class"),
-            new BMIClassification(35, 40, "obese_second_class"),
-            new BMIClassification(40, Float.MAX_VALUE, "obese_third_class"),
+            new BMIClassification(0, 16, "severe_thinness",
+                    "You are severely thin"),
+            new BMIClassification(16, 17, "moderate_thinness",
+                    "You are moderately thin"),
+            new BMIClassification(17, 18.5f, "mild_thinness",
+                    "You are mildly thin"),
+            new BMIClassification(18.5f, 25, "normal",
+                    "You are just perfect ;)"),
+            new BMIClassification(25, 30, "overweight",
+                    "You are overweight"),
+            new BMIClassification(30, 35, "obese_first_class",
+                    "You are mildly obese"),
+            new BMIClassification(35, 40, "obese_second_class",
+                    "You are obese"),
+            new BMIClassification(40, Float.MAX_VALUE, "obese_third_class",
+                    "You are severely obese"),
     };
 
     public abstract void countBmi();
@@ -26,13 +34,12 @@ public abstract class BMICounter {
 
     public abstract boolean isWeightValid(int weight);
 
-    public String getBmiClassification(){
+    public BMIClassification getBmiClassification(){
         return Arrays.stream(bmiClassifications)
                 .filter(bmiClassification -> bmiClassification.getBottomBound() <= bmi
                 && bmi < bmiClassification.getUpperBound())
                 .findFirst()
-                .map(BMIClassification::getClassification)
-                .orElse("black");
+                .orElse(null);
     }
 
     public void setWeight(int weight) {

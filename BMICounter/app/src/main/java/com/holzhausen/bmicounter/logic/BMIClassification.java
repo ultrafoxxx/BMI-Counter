@@ -1,5 +1,7 @@
 package com.holzhausen.bmicounter.logic;
 
+import java.util.Objects;
+
 public class BMIClassification {
 
     private final float bottomBound;
@@ -32,5 +34,20 @@ public class BMIClassification {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BMIClassification that = (BMIClassification) o;
+        return Float.compare(that.bottomBound, bottomBound) == 0 &&
+                Float.compare(that.upperBound, upperBound) == 0 &&
+                classification.equals(that.classification);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bottomBound, upperBound, classification);
     }
 }

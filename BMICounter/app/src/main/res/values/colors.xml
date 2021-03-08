@@ -9,10 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="severe_thinness">#FF082E79</color>
     <color name="moderate_thinness">#FF4169E1</color>
-    <color name="mild_thinness">#FFACE1AF</color>
-    <color name="normal">#FFCDEBA7</color>
-    <color name="overweight">#FFFFFF99</color>
-    <color name="obese_first_class">#FFFDE456</color>
-    <color name="obese_second_class">#FFCF2929</color>
-    <color name="obese_third_class">#FF801818</color>
+    <color name="mild_thinness">#FF0F934A</color>
+    <color name="normal">#FF0CCC16</color>
+    <color name="overweight">#FFCF7404</color>
+    <color name="obese_first_class">#FFFF0000</color>
+    <color name="obese_second_class">#FF7C0202</color>
+    <color name="obese_third_class">#FF390404</color>
 </resources>
